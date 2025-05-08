@@ -1,10 +1,6 @@
-/**
- * Digital Harmony Dashboard
- * Main JavaScript functionality
- */
 
-// ----------------- GLOBAL VARIABLES -----------------
-// API status tracking
+// ----------------- Global -----------------
+
 let discordConnected = false;
 let spotifyConnected = false;
 let visualizerActive = false;
@@ -13,41 +9,36 @@ let visualizerActive = false;
 let currentTrack = null;
 let trackTimer = null;
 let autoRefreshTimer = null;
-let autoRefreshEnabled = true; // Auto-refresh enabled by default
-
-// ----------------- INITIALIZATION FUNCTIONS -----------------
+let autoRefreshEnabled = true; 
+// ----------------- Initialize -----------------
 window.onload = function() {
     setDefaultProfileInfo();        
     createFractalBackground();
-    setupEnhancedCursorEffect(); // Changed to use the enhanced cursor effect
+    setupEnhancedCursorEffect(); 
     setupVisualizer();
     refreshStatus();
     startAutoRefresh();
     startDiscordRefresh();
-    setTimeout(debugDiscordData, 2000); // Debug Discord data after load
+    setTimeout(debugDiscordData, 1000); 
 };
 
-// ----------------- PROFILE FUNCTIONS -----------------
+// ----------------- Profile -----------------
 function setDefaultProfileInfo() {
-    // Set default profile information
+
     const yourName = "Fractal";
     const yourTag = "Frac."; 
     
-    // Update the profile elements
     document.getElementById('profile-name').textContent = yourName;
     document.getElementById('profile-tag').textContent = yourTag;
 }
 
 function updateProfileFromDiscord(data) {
-    // Only update if we have valid data
-    if (data && data.username) {
-        // Update name
+    if (data && data.username) 
         document.getElementById('profile-name').textContent = data.username;
         
-        // Update connection status
+
         document.getElementById('profile-tag').textContent = "Connected to Discord";
         
-        // Update avatar if available
         if (data.avatarURL) {
             const avatarImg = document.getElementById('avatar-image');
             if (avatarImg) {
@@ -65,7 +56,6 @@ function updateProfileFromDiscord(data) {
 }
 
 // ----------------- VISUAL EFFECTS -----------------
-// Create fractal canvas background
 const createFractalBackground = () => {
     const canvas = document.getElementById('fractalCanvas');
     const ctx = canvas.getContext('2d');
@@ -80,14 +70,14 @@ const createFractalBackground = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     
-    // Draw Mandelbrot fractal
+
     function drawFractal() {
         const width = canvas.width;
         const height = canvas.height;
         const imageData = ctx.createImageData(width, height);
         const data = imageData.data;
         
-        // Fractal parameters
+
         const maxIterations = 100;
         const zoom = 0.004 * (window.innerWidth < 600 ? 2 : 1);
         const moveX = -0.7;
@@ -95,7 +85,7 @@ const createFractalBackground = () => {
         
         for (let x = 0; x < width; x++) {
             for (let y = 0; y < height; y++) {
-                // Convert pixel coordinates to complex plane coordinates
+
                 const realPart = (x - width / 2) * zoom + moveX;
                 const imaginaryPart = (y - height / 2) * zoom + moveY;
                 
