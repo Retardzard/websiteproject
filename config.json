@@ -1,0 +1,11 @@
+{
+    "spotify": {
+      "clientId": "9401fd536d6845b3a258a923815ad63b",
+      "clientSecret": "fe6f3a7c87034c71bfefae899bad6047",
+      "redirectUri": "http://127.0.0.1:8080/callback"
+    },
+
+  "discord": {
+    "token": "MTM2NzE5MjM1NTExOTAzODQ5NA.G7NzDa.GPjkbguWqo2PNQAJ5XppiMRN602OsVM-B52PA8"
+  }
+}
